@@ -1,5 +1,5 @@
 #include "quadSolver.h"
-
+#include <math.h>
 /*
 stores calculations in x1 and x2, 
 returns 1 for success
