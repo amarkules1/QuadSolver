@@ -1,0 +1,1 @@
+https://steve.hollasch.net/cgindex/coding/ieeefloat.html
