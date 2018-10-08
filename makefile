@@ -4,28 +4,28 @@ cc = gcc;
 CFLAGS = -w -pedant
 
 compile: main.o inputReader.o quadSolver.o inputValidation.o
-	$(cc) $(CFLAGS) quadSolver -lm -c main.o inputReader.o quadSolver.o inputValidation.o
+	$(cc) $(CFLAGS) quadSolver -lm main.o inputReader.o quadSolver.o inputValidation.o -o quadSolver
 
 main.o: main.c inputReader.h quadSolver.h inputValidation.h
-	$(cc) $(CFLAGS) -o -c main.c
+	$(cc) $(CFLAGS) -c main.c
 inputReader.o: inputReader.c 
-	$(cc) $(CFLAGS) -o -c inputReader.c
+	$(cc) $(CFLAGS) -c inputReader.c
 quadSolver.o: quadSolver.c
-	$(cc) $(CFLAGS) -o -lm -c quadSolver.c
+	$(cc) $(CFLAGS) -lm -c quadSolver.c
 inputValidation.o: inputValidation.c
-	$(cc) $(CFLAGS) -o -c inputValidation.c
+	$(cc) $(CFLAGS) -c inputValidation.c
 
 inputReaderTest.o: inputReader.c tests/inputReader.c
-	$(cc) $(CFLAGS) -o -lcunit -c inputReader.c tests/inputReader.c
+	$(cc) $(CFLAGS) -lcunit -c inputReader.c tests/inputReader.c
 
 mainTest.o: main.c tests/main.c
-	$(cc) $(CFLAGS) -o -lcunit -c main.c tests/main.c
+	$(cc) $(CFLAGS)  -lcunit -c main.c tests/main.c
 
 inputValidationTest.o: inputValidation.c tests/inputValidation.c
-	$(cc) $(CFLAGS) -o -lcunit -c inputValidation.c tests/inputValidation.c
+	$(cc) $(CFLAGS)  -lcunit -c inputValidation.c tests/inputValidation.c
 
 quadSolverTest.o: quadSolver.c tests/quadSolver.c
-	$(cc) $(CFLAGS) - o -lcunit -lm -c quadSolver.c tests/quadSolver.c
+	$(cc) $(CFLAGS)  -lcunit -lm -c quadSolver.c tests/quadSolver.c
 
 inputReaderTest: inputReader.o inputReaderTest.o
 	$(cc) $(CFLAGS) -lcunit -c inputReader.o inputReaderTest.o
