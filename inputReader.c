@@ -4,13 +4,19 @@
 #include "inputReader.h"
 
 
-
+/**
+ * Returns a quadConstants pointer
+ * On error returns NULL
+ **/
 quadConstants* readFromConsole()
 {
     quadConstants * line = (quadConstants*)malloc(sizeof(quadConstants));
     printf("Ax^2 + Bx + C\nA = 0\nPlease enter a, b, and c seperated by one space");
     char lineBuff[1024];
     fgets(lineBuff,1024,stdin);
+    /**
+     *If LineBuff doesn't end in \n we know that the buffer overflowed 
+     **/
     if(lineBuff[strlen(lineBuff)-1] != '\n'){
         fprintf(stderr,"%s\n","buffer overflow");
         free(line);
@@ -32,7 +38,8 @@ quadConstants* readFromConsole()
         if(i == 0){
             if(lineBuff[end] == '\n'){
                 fprintf(stderr,"Missing b, and c");
-                break;
+                free(line);
+                return NULL;
             }
             char *A = (char*)malloc(end-start+1);
             A[end-start] = '\0';
@@ -48,7 +55,9 @@ quadConstants* readFromConsole()
         if(i == 1){
             if(lineBuff[end] == '\n'){
                 fprintf(stderr,"Missing c");
-                break;
+                free(line->A);
+                free(line);
+                return NULL;
             }
             char *B = (char*)malloc(end-start+1);
             B[end-start] = '\0';
@@ -64,7 +73,10 @@ quadConstants* readFromConsole()
         if(i == 2){
             if(lineBuff[end] != '\n'){
                 fprintf(stderr,"Too Many Arguments");
-                break;
+                free(line->A);
+                free(line->B);
+                free(line);
+                return NULL;
             }
             char *C = (char*)malloc(end-start+1);
             C[end-start] = '\0';
