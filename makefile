@@ -30,6 +30,9 @@ quadSolverTest.o: quadSolver.c tests/quadSolver.c
 inputReaderTest: inputReader.o inputReaderTest.o
 	$(cc) $(CFLAGS) -lcunit -c inputReader.o inputReaderTest.o
 
+testInputReader: inputReaderTest
+	inputReaderTest < tests/
+
 mainTest: main.o inputReader.o inputValidation.o quadSolver.o mainTest.o
 	$(cc) $(CFLAGS) -lcunit -lm -c main.o inputReader.o inputValidation.o quadSolver.o mainTest.o
 
