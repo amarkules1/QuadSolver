@@ -15,10 +15,10 @@ float validateInput(char * input){
 
 float number; 
 
-if(sscanf(input, "%d", &number) == 1) {
+if(sscanf(input, "%f", &number) == 1) {
   
 } else {
-  printf("Error: not a number.\n%s\n", buffer);
+  printf("Error: not a number.\n");
   return -1;
 }
 return number;
