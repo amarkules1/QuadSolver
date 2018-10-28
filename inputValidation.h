@@ -1,1 +1,1 @@
-float validateInput(char * input);
+float validateInput(char * input); 
