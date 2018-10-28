@@ -9,14 +9,14 @@ compile: main.o inputReader.o quadSolver.o inputValidation.o
 main.o: main.c inputReader.h quadSolver.h inputValidation.h
 	$(cc) $(CFLAGS) -c main.c
 inputReader.o: inputReader.c 
-	$(cc) $(CFLAGS) -c inputReader.c -o inputReader.o
+	$(cc) $(CFLAGS) -g -c inputReader.c -o inputReader.o
 quadSolver.o: quadSolver.c
 	$(cc) $(CFLAGS) -lm -c quadSolver.c
 inputValidation.o: inputValidation.c
 	$(cc) $(CFLAGS) -c inputValidation.c
 
 inputReaderTest.o: inputReader.c tests/inputReader.c
-	$(cc) $(CFLAGS) -lcunit -c tests/inputReader.c -o inputReaderTest.o
+	$(cc) $(CFLAGS) -g -lcunit -c tests/inputReader.c -o inputReaderTest.o
 
 mainTest.o: main.c tests/main.c
 	$(cc) $(CFLAGS)  -lcunit -c main.c tests/main.c
@@ -28,7 +28,7 @@ quadSolverTest.o: quadSolver.c tests/quadSolver.c
 	$(cc) $(CFLAGS)  -lcunit -lm -c quadSolver.c tests/quadSolver.c
 
 inputReaderTest: inputReader.o inputReaderTest.o
-	$(cc) $(CFLAGS) -lcunit inputReader.o inputReaderTest.o -o inputReaderTest
+	$(cc) $(CFLAGS) -g  inputReader.o inputReaderTest.o -o inputReaderTest -lcunit
 
 testInputReader: inputReaderTest
 	inputReaderTest < tests/
