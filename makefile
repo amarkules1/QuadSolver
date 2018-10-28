@@ -15,32 +15,31 @@ quadSolver.o: quadSolver.c
 inputValidation.o: inputValidation.c
 	$(cc) $(CFLAGS) -c inputValidation.c
 
-inputReaderTest.o: inputReader.c tests/inputReader.c
-	$(cc) $(CFLAGS) -g -lcunit -c tests/inputReader.c -o inputReaderTest.o
+inputReaderTest.o: tests/inputReader.c
+	$(cc) $(CFLAGS) -c tests/inputReader.c -o inputReaderTest.o -lcunit
 
-mainTest.o: main.c tests/main.c
-	$(cc) $(CFLAGS)  -lcunit -c main.c tests/main.c
+mainTest.o: tests/main.c
+	$(cc) $(CFLAGS) -c tests/main.c -lcunit
 
-inputValidationTest.o: inputValidation.c tests/inputValidation.c
-	$(cc) $(CFLAGS)  -lcunit -c inputValidation.c tests/inputValidation.c
+inputValidationTest.o: tests/inputValidation.c
+	$(cc) $(CFLAGS)  -c tests/inputValidation.c -lcunit
 
-quadSolverTest.o: quadSolver.c tests/quadSolver.c
-	$(cc) $(CFLAGS)  -lcunit -lm -c quadSolver.c tests/quadSolver.c
+quadSolverTest.o: tests/quadSolver.c
+	$(cc) $(CFLAGS)  -c tests/quadSolver.c -lcunit -lm
 
-inputReaderTest: inputReader.o inputReaderTest.o
-	$(cc) $(CFLAGS) -g  inputReader.o inputReaderTest.o -o inputReaderTest -lcunit
+inputReaderTest: inputReaderTest.o inputReader.o
+	$(cc) $(CFLAGS)  inputReader.o inputReaderTest.o -o inputReaderTest -lcunit
 
-testInputReader: inputReaderTest
-	inputReaderTest < tests/
+
 
 mainTest: main.o inputReader.o inputValidation.o quadSolver.o mainTest.o
-	$(cc) $(CFLAGS) -lcunit -lm -c main.o inputReader.o inputValidation.o quadSolver.o mainTest.o
+	$(cc) $(CFLAGS) main.o inputReader.o inputValidation.o quadSolver.o mainTest.o -lcunit -lm
 
 inputValidationTest: inputValidation.o inputValidationTest.o
-	$(cc) $(CFLAGS) -lcunit -c inputValidation.o inputValidationTest.o
+	$(cc) $(CFLAGS) inputValidation.o inputValidationTest.o -lcunit
 
-quadSolverTest: quadSolver.o quadSolverTest.o
-	$(cc) $(CFLAGS) -lcunit -lm -c quadSolver.o quadSolverTest.o
+quadSolverTest: quadSolverTest.o quadSolver.o
+	$(cc) $(CFLAGS) quadSolverTest.o -lcunit -lm
 
 clean:
-	rm *.o quadSolver mainTest inputReaderTest 
+	rm -f *.o quadSolver mainTest inputReaderTest 

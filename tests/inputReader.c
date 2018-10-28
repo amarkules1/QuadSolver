@@ -18,10 +18,15 @@ void test_readFromConsole(void){
     test = readFromConsole();
     CU_ASSERT_FATAL(test == NULL);
 }
-int none(){
+int close(){
+    fclose(stdin);
     return 0;
 }
 
+int init(){
+    stdin = freopen("tests/inputReaderSTDIN","r",stdin);
+    return 0;
+}
 int main(int argc, char const *argv[])
 {
     CU_pSuite psuite = NULL;
@@ -31,7 +36,7 @@ int main(int argc, char const *argv[])
         return CU_get_error();
     }
 
-    psuite = CU_add_suite("readFromConsoleSuite",none,none);
+    psuite = CU_add_suite("readFromConsoleSuite",init,close);
     CU_add_test(psuite,"readFromConsole",test_readFromConsole);
     CU_automated_run_tests();
     return 0;
