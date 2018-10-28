@@ -11,10 +11,9 @@
 quadConstants* readFromConsole()
 {
     quadConstants * line = (quadConstants*)malloc(sizeof(quadConstants));
-    printf("Ax^2 + Bx + C\nA = 0\nPlease enter a, b, and c seperated by one space");
+    printf("Ax^2 + Bx + C = 0\nPlease enter a, b, and c seperated by one space");
     char lineBuff[1024];
     fgets(lineBuff,1023,stdin);
-    lineBuff[1023] = '\0';
     /**
      *If LineBuff doesn't end in \n we know that the buffer overflowed 
      **/
