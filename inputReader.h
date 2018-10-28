@@ -1,5 +1,3 @@
-#ifndef INPUTREADER_H
-#define INPUTREADER_H
 typedef struct
 {
     char* A;
@@ -7,4 +5,3 @@ typedef struct
     char* C;
 } quadConstants;
 quadConstants* readFromConsole();
-#endif

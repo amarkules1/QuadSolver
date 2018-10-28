@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := compile
 
-cc = gcc;
-CFLAGS = -w -pedant
+cc = gcc
+CFLAGS = -Wall -pedantic -std="gnu99"
 
 compile: main.o inputReader.o quadSolver.o inputValidation.o
 	$(cc) $(CFLAGS) quadSolver -lm main.o inputReader.o quadSolver.o inputValidation.o -o quadSolver
@@ -9,35 +9,37 @@ compile: main.o inputReader.o quadSolver.o inputValidation.o
 main.o: main.c inputReader.h quadSolver.h inputValidation.h
 	$(cc) $(CFLAGS) -c main.c
 inputReader.o: inputReader.c 
-	$(cc) $(CFLAGS) -c inputReader.c
+	$(cc) $(CFLAGS) -g -c inputReader.c -o inputReader.o
 quadSolver.o: quadSolver.c
 	$(cc) $(CFLAGS) -lm -c quadSolver.c
 inputValidation.o: inputValidation.c
 	$(cc) $(CFLAGS) -c inputValidation.c
 
-inputReaderTest.o: inputReader.c tests/inputReader.c
-	$(cc) $(CFLAGS) -lcunit -c inputReader.c tests/inputReader.c
+inputReaderTest.o: tests/inputReader.c
+	$(cc) $(CFLAGS) -c tests/inputReader.c -o inputReaderTest.o -lcunit
 
-mainTest.o: main.c tests/main.c
-	$(cc) $(CFLAGS)  -lcunit -c main.c tests/main.c
+mainTest.o: tests/main.c
+	$(cc) $(CFLAGS) -c tests/main.c -lcunit
 
-inputValidationTest.o: inputValidation.c tests/inputValidation.c
-	$(cc) $(CFLAGS)  -lcunit -c inputValidation.c tests/inputValidation.c
+inputValidationTest.o: tests/inputValidation.c
+	$(cc) $(CFLAGS)  -c tests/inputValidation.c -lcunit
 
-quadSolverTest.o: quadSolver.c tests/quadSolver.c
-	$(cc) $(CFLAGS)  -lcunit -lm -c quadSolver.c tests/quadSolver.c
+quadSolverTest.o: tests/quadSolver.c
+	$(cc) $(CFLAGS)  -c tests/quadSolver.c -lcunit -lm
 
-inputReaderTest: inputReader.o inputReaderTest.o
-	$(cc) $(CFLAGS) -lcunit -c inputReader.o inputReaderTest.o
+inputReaderTest: inputReaderTest.o inputReader.o
+	$(cc) $(CFLAGS)  inputReader.o inputReaderTest.o -o inputReaderTest -lcunit
+
+
 
 mainTest: main.o inputReader.o inputValidation.o quadSolver.o mainTest.o
-	$(cc) $(CFLAGS) -lcunit -lm -c main.o inputReader.o inputValidation.o quadSolver.o mainTest.o
+	$(cc) $(CFLAGS) main.o inputReader.o inputValidation.o quadSolver.o mainTest.o -lcunit -lm
 
 inputValidationTest: inputValidation.o inputValidationTest.o
-	$(cc) $(CFLAGS) -lcunit -c inputValidation.o inputValidationTest.o
+	$(cc) $(CFLAGS) inputValidation.o inputValidationTest.o -lcunit
 
-quadSolverTest: quadSolver.o quadSolverTest.o
-	$(cc) $(CFLAGS) -lcunit -lm -c quadSolver.o quadSolverTest.o
+quadSolverTest: quadSolverTest.o quadSolver.o
+	$(cc) $(CFLAGS) quadSolverTest.o -lcunit -lm
 
 clean:
-	rm *.o quadSolver mainTest inputReaderTest 
+	rm -f *.o quadSolver mainTest inputReaderTest 

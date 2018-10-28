@@ -1,2 +1,4 @@
 *.o
 quadSolver
+.vscode
+CUnitAutomated-Results.xml
