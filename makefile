@@ -8,15 +8,15 @@ compile: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
 
 
 main.o: main.c inputReader.h quadSolver.h inputValidation.h answerChecker.h
-	$(cc) $(CFLAGS) -c main.c
+	$(cc) $(CFLAGS) -c main.c -o main.o
 inputReader.o: inputReader.c 
 	$(cc) $(CFLAGS) -g -c inputReader.c -o inputReader.o
 quadSolver.o: quadSolver.c
-	$(cc) $(CFLAGS) -lm -c quadSolver.c
+	$(cc) $(CFLAGS) -lm -c quadSolver.c -o quadSolver.o
 inputValidation.o: inputValidation.c
-	$(cc) $(CFLAGS) -c inputValidation.c
+	$(cc) $(CFLAGS) -c inputValidation.c -o inputValidation.o
 answerChecker.o: answerChecker.c
-	$(cc) $(CFLAGS) -c answerChecker.c
+	$(cc) $(CFLAGS) -c answerChecker.c -o answerChecker.o
 
 
 
@@ -24,13 +24,13 @@ inputReaderTest.o: tests/inputReader.c
 	$(cc) $(CFLAGS) -c tests/inputReader.c -o inputReaderTest.o -lcunit
 
 answerCheckerTest.o: tests/answerChecker.c
-	$(cc) $(CFLAGS) -c tests/answerChecker.c
+	$(cc) $(CFLAGS) -c tests/answerChecker.c -o answerCheckerTest.o
 
 inputValidationTest.o: tests/inputValidation.c
-	$(cc) $(CFLAGS)  -c tests/inputValidation.c -lcunit
+	$(cc) $(CFLAGS)  -c tests/inputValidation.c -o inputValidationTest.o
 
 quadSolverTest.o: tests/quadSolver.c
-	$(cc) $(CFLAGS)  -c tests/quadSolver.c -lcunit -lm
+	$(cc) $(CFLAGS)  -c tests/quadSolver.c -o quadSolverTest.o -lcunit -lm
 
 
 
@@ -38,13 +38,13 @@ inputReaderTest: inputReaderTest.o inputReader.o
 	$(cc) $(CFLAGS)  inputReader.o inputReaderTest.o -o inputReaderTest -lcunit
 
 answerCheckerTest: answerCheckerTest.o answerChecker.o
-	$(cc) $(CFLAGS) answerChecker answerCheckerTest -lcunit
+	$(cc) $(CFLAGS) answerChecker answerCheckerTest -o answerCheckerTest-lcunit
 
 inputValidationTest: inputValidation.o inputValidationTest.o
-	$(cc) $(CFLAGS) inputValidation.o inputValidationTest.o -lcunit
+	$(cc) $(CFLAGS) inputValidation.o inputValidationTest.o -o inputValidationTest -lcunit
 
 quadSolverTest: quadSolverTest.o quadSolver.o
-	$(cc) $(CFLAGS) quadSolverTest.o -lcunit -lm
+	$(cc) $(CFLAGS) quadSolverTest.o -o quadSolverTest -lcunit -lm
 
 
 
