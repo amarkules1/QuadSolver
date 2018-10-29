@@ -43,8 +43,8 @@ answerCheckerTest: answerCheckerTest.o answerChecker.o
 inputValidationTest: inputValidation.o inputValidationTest.o
 	$(cc) $(CFLAGS) inputValidation.o inputValidationTest.o -lcunit
 
-quadSolverTest: quadSolverTest.o quadSolver.o
-	$(cc) $(CFLAGS) quadSolverTest.o -lcunit -lm
+quadSolverTest: quadSolverTest.o quadSolver.o answerChecker.o
+	$(cc) $(CFLAGS) quadSolver.o answerChecker.o quadSolverTest.o -o quadSolverTest -lcunit -lm
 
 
 

@@ -33,9 +33,9 @@ void main(int argc, char * argv[]){
         return CU_get_error();
     }
 
-    psuite = CU_add_suite("readFromConsoleSuite",init,close);
-    CU_add_test(psuite,"readFromConsole",answerCheckerTest_goodSolution);
-    CU_add_test(psuite,"readFromConsole",answerCheckerTest_tooLow);
-    CU_add_test(psuite,"readFromConsole",answerCheckerTest_tooHigh);
+    psuite = CU_add_suite("answerCheckerSuite",init,close);
+    CU_add_test(psuite,"answerCheckerTest_goodSolution",answerCheckerTest_goodSolution);
+    CU_add_test(psuite,"answerCheckerTest_tooLow",answerCheckerTest_tooLow);
+    CU_add_test(psuite,"answerCheckerTest_tooHigh",answerCheckerTest_tooHigh);
     CU_automated_run_tests();
 }

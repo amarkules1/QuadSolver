@@ -4,10 +4,10 @@
 #include <CUnit/CUnit.h>
 #include <CUnit/Automated.h>
 
-quadSolverTest_basic();
+void quadSolverTest_basic();
 
-quadSolverTest_ZeroDeterminant();
+void quadSolverTest_ZeroDeterminant();
 
-quadSolverTest_Imaginary();
+void quadSolverTest_Imaginary();
 
 #endif
