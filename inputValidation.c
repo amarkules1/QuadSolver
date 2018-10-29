@@ -19,7 +19,7 @@ if(sscanf(input, "%f", &number) == 1) {
   
 } else {
   printf("Error: not a number.\n");
-  return -1;
+  return 0.0/0.0;
 }
 return number;
 }
