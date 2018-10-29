@@ -10,7 +10,10 @@
 #include <math.h>
 #include "quadSolver.h"
 #include "inputValidation.h" 
-#include "inputReader.h"
+#include "inputReader.h" 
+#include "answerChecker.h"
+
+
 
 //Main Method--------------------------------------------------------------------------------------
 int main (int argc, char *argv[]) { 
@@ -36,7 +39,7 @@ c = validateInput(line->C);
  
  quadSolver(a,b,c,&x1,&x2);  
 
- printWarnings(a,b,c,&x1,&x2);
+ printWarnings(a,b,c,x1,x2);
 
 
 	return(0);
