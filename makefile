@@ -23,22 +23,21 @@ answerChecker.o: answerChecker.c
 inputReaderTest.o: tests/inputReader.c
 	$(cc) $(CFLAGS) -c tests/inputReader.c -o inputReaderTest.o -lcunit
 
-answerCheckerTest.o: tests/answerChecker.c
-	$(cc) $(CFLAGS) -c tests/answerChecker.c -o answerCheckerTest.o
+answerCheckerTest.o: tests/answerCheckerTest.c tests/answerCheckerTest.h
+	$(cc) $(CFLAGS) -c tests/answerCheckerTest.c -o answerCheckerTest.o -lcunit
 
 inputValidationTest.o: tests/inputValidation.c
 	$(cc) $(CFLAGS)  -c tests/inputValidation.c -o inputValidationTest.o
 
-quadSolverTest.o: tests/quadSolver.c
-	$(cc) $(CFLAGS)  -c tests/quadSolver.c -o quadSolverTest.o -lcunit -lm
 
-
+quadSolverTest.o: tests/quadSolverTest.c tests/quadSolverTest.h
+	$(cc) $(CFLAGS)  -c tests/quadSolverTest.c -o quadSolverTest.o -lcunit -lm
 
 inputReaderTest: inputReaderTest.o inputReader.o
 	$(cc) $(CFLAGS)  inputReader.o inputReaderTest.o -o inputReaderTest -lcunit
 
 answerCheckerTest: answerCheckerTest.o answerChecker.o
-	$(cc) $(CFLAGS) answerChecker answerCheckerTest -o answerCheckerTest-lcunit
+	$(cc) $(CFLAGS) answerChecker.o answerCheckerTest.o -o answerCheckerTest -lcunit
 
 inputValidationTest: inputValidation.o inputValidationTest.o
 	$(cc) $(CFLAGS) inputValidation.o inputValidationTest.o -o inputValidationTest -lcunit

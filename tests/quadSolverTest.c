@@ -1,5 +1,12 @@
-#include "quadSolver.h"
-#include <CUnit/Basic.h>
+#include "quadSolverTest.h"
+
+int close(){
+    return 0;
+}
+
+int init(){
+    return 0;
+}
 
 int quadSolverTest_basic(){
     double x1;
@@ -30,4 +37,21 @@ int quadSolverTest_Imaginary(){
 	CU_ASSERT(x2 != x2);
 	CU_ASSERT(retVal == 0);
 	return 0;
+}
+
+
+void main(int argc, char * argv[]){
+	
+	CU_pSuite psuite = NULL;
+
+    if (CUE_SUCCESS != CU_initialize_registry())
+    {
+        return CU_get_error();
+    }
+
+    psuite = CU_add_suite("readFromConsoleSuite",init,close);
+    CU_add_test(psuite,"readFromConsole",quadSolverTest_basic);
+    CU_add_test(psuite,"readFromConsole",quadSolverTest_ZeroDeterminant);
+    CU_add_test(psuite,"readFromConsole",quadSolverTest_Imaginary);
+    CU_automated_run_tests();
 }
