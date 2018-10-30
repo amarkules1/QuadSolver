@@ -4,7 +4,7 @@ cc = gcc
 CFLAGS = -Wall -pedantic -std="gnu99"
 
 compile: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
-	$(cc) $(CFLAGS) main.o inputReader.o quadSolver.o inputValidation.o -o quadSolver -lm
+	$(cc) $(CFLAGS) main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o -o quadSolver -lm
 
 
 main.o: main.c inputReader.h quadSolver.h inputValidation.h answerChecker.h

@@ -36,7 +36,7 @@ b = validateInput(line->B);
 c = validateInput(line->C);
 
 }
- 
+ printf("hello");
  quadSolver(a,b,c,&x1,&x2);  
 
  printWarnings(a,b,c,x1,x2);
