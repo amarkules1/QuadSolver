@@ -2,3 +2,5 @@
 #define INPUTVALIDATION_H
 
 float validateInput(char * input); 
+
+#endif
