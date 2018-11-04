@@ -62,6 +62,6 @@ int printWarnings(double a, double b, double c, double x1, double x2){
 			}
 		}
 	}
-	int accuracyCheck2 = checkAnswer(a,b,c,x2);
+	return 0;
 	
 }

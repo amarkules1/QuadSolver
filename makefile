@@ -4,7 +4,7 @@ cc = gcc
 CFLAGS = -Wall -pedantic -std="gnu99"
 
 compile: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
-	$(cc) $(CFLAGS) main.o inputReader.o quadSolver.o inputValidation.o -o quadSolver -lm
+	$(cc) $(CFLAGS) main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o -o quadSolver -lm
 
 
 main.o: main.c inputReader.h quadSolver.h inputValidation.h answerChecker.h
@@ -42,10 +42,8 @@ answerCheckerTest: answerCheckerTest.o answerChecker.o
 inputValidationTest: inputValidation.o inputValidationTest.o
 	$(cc) $(CFLAGS) inputValidation.o inputValidationTest.o -o inputValidationTest -lcunit
 
-quadSolverTest: quadSolverTest.o quadSolver.o
-	$(cc) $(CFLAGS) quadSolverTest.o -o quadSolverTest -lcunit -lm
-
-
+quadSolverTest: quadSolverTest.o quadSolver.o answerChecker.o
+	$(cc) $(CFLAGS) quadSolver.o answerChecker.o quadSolverTest.o -o quadSolverTest -lcunit -lm
 
 runAllUnitTests: inputReaderTest mainTest inputValidationTest quadSolverTest
 	rm -f CUnit*.xml
