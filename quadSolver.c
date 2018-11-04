@@ -53,9 +53,9 @@ int printWarnings(double a, double b, double c, double x1, double x2){
 		}
 		
 		if(x2 != x2){
-			printf("Only one solution was found.");
+			printf("Only one solution was found.\n");
 		}else{
-			printf("Second answer: %f",x2);
+			printf("Second answer: %f\n",x2);
 			int accuracyCheck2 = checkAnswer(a,b,c,x2);
 			if(accuracyCheck2 != 0){
 				printf("The answer %f may be inaccurate.\n", x2);

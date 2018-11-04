@@ -6,11 +6,13 @@ CFLAGS = -Wall -pedantic -std="gnu99"
 compile: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
 	$(cc) $(CFLAGS) main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o -o quadSolver -lm
 
+debug: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
+	$(cc) $(CFLAGS) -g main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o -o quadSolver -lm
 
 main.o: main.c inputReader.h quadSolver.h inputValidation.h answerChecker.h
-	$(cc) $(CFLAGS) -c main.c -o main.o
+	$(cc) $(CFLAGS) -g -c main.c -o main.o
 inputReader.o: inputReader.c 
-	$(cc) $(CFLAGS) -g -c inputReader.c -o inputReader.o
+	$(cc) $(CFLAGS) -c inputReader.c -o inputReader.o
 quadSolver.o: quadSolver.c
 	$(cc) $(CFLAGS) -lm -c quadSolver.c -o quadSolver.o
 inputValidation.o: inputValidation.c

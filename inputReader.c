@@ -11,7 +11,7 @@
 quadConstants* readFromConsole()
 {
     quadConstants * line = (quadConstants*)malloc(sizeof(quadConstants));
-    printf("Ax^2 + Bx + C = 0\nPlease enter a, b, and c seperated by one space");
+    printf("Ax^2 + Bx + C = 0\nPlease enter a, b, and c seperated by one space:\n");
     char lineBuff[1024];
     fgets(lineBuff,1023,stdin);
     /**
@@ -37,7 +37,7 @@ quadConstants* readFromConsole()
         }
         if(i == 0){
             if(lineBuff[end] == '\n'){
-                fprintf(stderr,"Missing b, and c");
+                fprintf(stderr,"Missing b, and c\n");
                 free(line);
                 return NULL;
             }
@@ -54,7 +54,7 @@ quadConstants* readFromConsole()
         }
         if(i == 1){
             if(lineBuff[end] == '\n'){
-                fprintf(stderr,"Missing c");
+                fprintf(stderr,"Missing c\n");
                 free(line->A);
                 free(line);
                 return NULL;
@@ -72,7 +72,7 @@ quadConstants* readFromConsole()
         }
         if(i == 2){
             if(lineBuff[end] != '\n'){
-                fprintf(stderr,"Too Many Arguments");
+                fprintf(stderr,"Too Many Arguments\n");
                 free(line->A);
                 free(line->B);
                 free(line);
@@ -86,7 +86,11 @@ quadConstants* readFromConsole()
                 index ++;
             }
             line->C = C;
-            end++;
+            //end++; this line was causing issues. It increments the index past the '\n' before the outer while loop makes it's comparison
+            //proposed solution:
+            if(lineBuff[end] != '\n'){
+                end++;
+            }
             start = end;
         }
         i ++;
