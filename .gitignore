@@ -1,4 +1,8 @@
 *.o
 quadSolver
 .vscode
-CUnitAutomated-Results.xml
+CUnit*.xml
+inputValidationTest
+answerCheckerTest
+inputReaderTest
+quadSolverTest
