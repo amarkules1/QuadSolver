@@ -3,7 +3,7 @@ version = 1_0
 cc = gcc
 CFLAGS = -Wall -pedantic -std="gnu99"
 
-package: quadSolver
+package: quadSolver README LICENSE
 	mkdir src
 	cp *.c src
 	cp *.h src
@@ -14,6 +14,7 @@ package: quadSolver
 	cp README quadSolver_$(version)
 	cp LICENSE quadSolver_$(version)
 	tar -zcvf quadSolver_$(version).tar.gz quadSolver_$(version)
+	rm -R quadSolver_$(version)
 	
 quadSolver: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
 	$(cc) $(CFLAGS) main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o -o quadSolver -lm
