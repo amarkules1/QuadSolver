@@ -1,9 +1,21 @@
-.DEFAULT_GOAL := compile
-
+.DEFAULT_GOAL := quadSolver
+version = 1_0
 cc = gcc
 CFLAGS = -Wall -pedantic -std="gnu99"
 
-compile: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
+package: quadSolver
+	mkdir src
+	cp *.c src
+	cp *.h src
+	cp tests src
+	mkdir quadSolver_$(version)
+	mv -R src quadSolver_$(version)
+	cp quadSolver quadSolver_$(version)
+	cp README quadSolver_$(version)
+	cp LICENSE quadSolver_$(version)
+	tar -zcvf quadSolver_$(version).tar.gz quadSolver_$(version)
+	
+quadSolver: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
 	$(cc) $(CFLAGS) main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o -o quadSolver -lm
 
 debug: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
