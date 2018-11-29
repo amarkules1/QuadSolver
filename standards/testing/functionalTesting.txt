@@ -4,4 +4,4 @@ The last line run by this command outputs any unexpected differences to the comm
 
 If the last line starts with "diff", the functional tests all passed. 
 
-When adding a new functional test, add the input line to the file tests/functionalTestIn.txt and the expected output lines (including prompts) to tests/functionalTestExpected.txt.
+When adding a new functional test, add the input line to the file tests/functionalTestIn.txt and the expected output lines (including prompts) to tests/functionalTestExpected.txt. Functional tests should cover valid input, boundary cases, and invalid input.
