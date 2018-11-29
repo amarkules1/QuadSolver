@@ -19,6 +19,12 @@ First answer: -1.697224
 Second answer: -5.302776
 Ax^2 + Bx + C = 0
 Please enter a, b, and c seperated by one space(or q to exit):
+First answer: -2.945727
+Second answer: -3.055273
+Ax^2 + Bx + C = 0
+Please enter a, b, and c seperated by one space(or q to exit):
+No Real Solutions Exist.
+Ax^2 + Bx + C = 0
+Please enter a, b, and c seperated by one space(or q to exit):
 Exiting
-First answer: -1.697224
-Second answer: -5.302776
+No Real Solutions Exist.

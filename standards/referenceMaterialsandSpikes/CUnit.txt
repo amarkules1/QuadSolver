@@ -1,0 +1,4 @@
+Source:
+http://cunit.sourceforge.net/
+
+Findings: After considering other options, such as Dr. Kapenga's version of CUnit, we decided to use the version of CUnit found at the link above. There you can find information on how to install CUnit. This must be done before running the Unit tests for our project. For further information on Unit testing see the standards/testing folder.

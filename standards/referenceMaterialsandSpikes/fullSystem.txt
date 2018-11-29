@@ -1,0 +1,1 @@
+for full system testing, we created 2 files, an input file and a output file. we set the input file to standard in and compare the output file to the expected output file.
