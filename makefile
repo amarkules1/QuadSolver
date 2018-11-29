@@ -1,22 +1,9 @@
-.DEFAULT_GOAL := quadSolver
-version = 1_0
+.DEFAULT_GOAL := compile
+
 cc = gcc
 CFLAGS = -Wall -pedantic -std="gnu99"
 
-package: quadSolver README.md LICENSE
-	mkdir -p src
-	cp *.c src
-	cp *.h src
-	cp -r tests src
-	mkdir -p quadSolver_$(version)
-	mv src quadSolver_$(version)
-	cp quadSolver quadSolver_$(version)
-	cp README.md quadSolver_$(version)
-	cp LICENSE quadSolver_$(version)
-	tar -zcvf quadSolver_$(version).tar.gz quadSolver_$(version)
-	rm -R quadSolver_$(version)
-	
-quadSolver: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
+compile: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
 	$(cc) $(CFLAGS) main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o -o quadSolver -lm
 
 debug: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
@@ -60,6 +47,12 @@ inputValidationTest: inputValidation.o inputValidationTest.o
 quadSolverTest: quadSolverTest.o quadSolver.o answerChecker.o
 	$(cc) $(CFLAGS) quadSolver.o answerChecker.o quadSolverTest.o -o quadSolverTest -lcunit -lm
 
+functionalTest: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
+	$(cc) $(CFLAGS) main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o -o quadSolver -lm
+	./quadSolver <tests/functionalTestIn.txt >tests/functionalTestActual.txt
+	diff tests/functionalTestActual.txt tests/functionalTestExpected.txt
+
+
 runAllUnitTests: inputReaderTest mainTest inputValidationTest quadSolverTest
 	rm -f CUnit*.xml
 	./inputReaderTest
@@ -71,4 +64,4 @@ runAllUnitTests: inputReaderTest mainTest inputValidationTest quadSolverTest
 	./answerCheckerTest
 	mv CUnitAutomated-Results.xml CUnitAutomated-Results-answerChecker.xml
 clean:
-	rm -f *.o quadSolver mainTest inputReaderTest CUnit*.xml
+	rm -f *.o quadSolver *Test tests/functionalTestActual.txt CUnit*.xml

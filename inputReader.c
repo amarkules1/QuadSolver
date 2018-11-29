@@ -11,7 +11,7 @@
 quadConstants* readFromConsole()
 {
     quadConstants * line = (quadConstants*)malloc(sizeof(quadConstants));
-    printf("Ax^2 + Bx + C = 0\nPlease enter a, b, and c seperated by one space:\n");
+    printf("Ax^2 + Bx + C = 0\nPlease enter a, b, and c seperated by one space(or q to exit):\n");
     char lineBuff[1024];
     fgets(lineBuff,1023,stdin);
     /**
@@ -22,6 +22,11 @@ quadConstants* readFromConsole()
         free(line);
         return NULL;
     }
+    if(lineBuff[0] == 'q'){
+	printf("Exiting\n");
+	return NULL;
+    }
+    
     int start = 0;
     int end = 0;
     int i = 0;

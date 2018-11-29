@@ -26,21 +26,25 @@ float c=0;
 //doubles to pass to quadSolver
 double x1;
 double x2; 
+int cont = 1;
 
-quadConstants * line = readFromConsole();
+while(cont){
+	quadConstants * line = readFromConsole();
 
-if(line != NULL){
+	if(line != NULL){
 
-a = validateInput(line->A);
-b = validateInput(line->B);
-c = validateInput(line->C);
+	a = validateInput(line->A);
+	b = validateInput(line->B);
+	c = validateInput(line->C);
+
+	}else{
+		cont = 0;
+	}
+
+	quadSolver(a,b,c,&x1,&x2);  
+
+	printWarnings(a,b,c,x1,x2);
 
 }
-
- quadSolver(a,b,c,&x1,&x2);  
-
- printWarnings(a,b,c,x1,x2);
-
-
-	return(0);
+return 0;
 } 
