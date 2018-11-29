@@ -43,6 +43,7 @@ while(cont){
 
 	quadSolver(a,b,c,&x1,&x2);  
 
+
 	printWarnings(a,b,c,x1,x2);
 
 }
