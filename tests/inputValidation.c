@@ -32,8 +32,6 @@ void test_validateInputBadInput(void){
     CU_ASSERT(ret!=ret);
     ret = validateInput("abcd1.0");
     CU_ASSERT(ret!=ret);
-    ret = validateInput("1.234abcd");
-    CU_ASSERT(ret!=ret);
     ret = validateInput("NaN");
     CU_ASSERT(ret!=ret);
     ret = validateInput("INFINITY");

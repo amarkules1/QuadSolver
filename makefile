@@ -12,13 +12,13 @@ debug: main.o inputReader.o quadSolver.o inputValidation.o answerChecker.o
 main.o: main.c inputReader.h quadSolver.h inputValidation.h answerChecker.h
 	$(cc) $(CFLAGS) -g -c main.c -o main.o
 inputReader.o: inputReader.c 
-	$(cc) $(CFLAGS) -c inputReader.c -o inputReader.o
+	$(cc) $(CFLAGS) -g -c inputReader.c -o inputReader.o
 quadSolver.o: quadSolver.c
 	$(cc) $(CFLAGS) -lm -c quadSolver.c -o quadSolver.o
 inputValidation.o: inputValidation.c
-	$(cc) $(CFLAGS) -c inputValidation.c -o inputValidation.o
+	$(cc) $(CFLAGS) -g -c inputValidation.c -o inputValidation.o
 answerChecker.o: answerChecker.c
-	$(cc) $(CFLAGS) -c answerChecker.c -o answerChecker.o
+	$(cc) $(CFLAGS) -g -c answerChecker.c -o answerChecker.o
 
 
 
@@ -53,7 +53,7 @@ functionalTest: main.o inputReader.o quadSolver.o inputValidation.o answerChecke
 	diff tests/functionalTestActual.txt tests/functionalTestExpected.txt
 
 
-runAllUnitTests: inputReaderTest mainTest inputValidationTest quadSolverTest
+runAllUnitTests: inputReaderTest inputValidationTest quadSolverTest answerCheckerTest
 	rm -f CUnit*.xml
 	./inputReaderTest
 	mv CUnitAutomated-Results.xml CUnitAutomated-Results-inputReader.xml
