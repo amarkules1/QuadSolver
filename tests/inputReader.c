@@ -16,7 +16,12 @@ void test_readFromConsole(void){
     CU_ASSERT(strcmp(test->B,"64.23")==0);
     CU_ASSERT(strcmp(test->C,"77534")==0);
     test = readFromConsole();
-    CU_ASSERT_FATAL(test == NULL);
+    CU_ASSERT(test == NULL);
+    test = readFromConsole();
+    CU_ASSERT(test==NULL);
+    test = readFromConsole();
+    CU_ASSERT(test==NULL);
+    test = readFromConsole();
 }
 int close(){
     fclose(stdin);

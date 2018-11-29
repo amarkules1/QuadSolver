@@ -41,6 +41,13 @@ quadConstants* readFromConsole()
             end ++;
         }
         if(i == 0){
+            printf("Start:%i \n",start);
+            printf("End:%i \n",end);
+            if(start == end){
+                fprintf(stderr,"Missing A\n");
+                free(line);
+                return NULL;
+            }
             if(lineBuff[end] == '\n'){
                 fprintf(stderr,"Missing b, and c\n");
                 free(line);
@@ -58,6 +65,14 @@ quadConstants* readFromConsole()
             start = end;
         }
         if(i == 1){
+            printf("Start:%i \n",start);
+            printf("End:%i \n",end);
+            if(start == end){
+                fprintf(stderr,"Missing b\n");
+                free(line->A);
+                free(line);
+                return NULL;
+            }
             if(lineBuff[end] == '\n'){
                 fprintf(stderr,"Missing c\n");
                 free(line->A);
@@ -76,6 +91,15 @@ quadConstants* readFromConsole()
             start = end;
         }
         if(i == 2){
+            printf("Start:%i \n",start);
+            printf("End:%i \n",end);
+            if(start == end){
+                fprintf(stderr,"Missing c\n");
+                free(line->A);
+                free(line->B);
+                free(line);
+                return NULL;
+            }
             if(lineBuff[end] != '\n'){
                 fprintf(stderr,"Too Many Arguments\n");
                 free(line->A);
