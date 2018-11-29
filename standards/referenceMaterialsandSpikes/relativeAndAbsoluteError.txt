@@ -1,0 +1,5 @@
+Source:
+http://www2.phy.ilstu.edu/~wenning/slh/Absolute%20Relative%20Error.pdf (can also be found in this directory)
+
+Findings:
+Absolute error is the measure of absolute difference between an approximation and the actual value, while relative error is a measure of the absolute error divided by the actual value. Relative error measurements have the advantage that they are comparable for actual values which can be orders of magnitude different. For this reason, we will use a measure of relative error to determine whether our answers are accurate.

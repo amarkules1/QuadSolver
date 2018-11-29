@@ -1,0 +1,36 @@
+To install this application, run the command "make" from the project's root directory.
+
+After installation, the program can be run by typing ./quadSolver from the root directory.
+
+To uninstall the program, run "make clean" from the program's root directory.
+
+Adding a make command:
+Our standard method of adding a make command for a new .c file is as follows:
+1. Create a command to generate the *.o file
+	the *.o file should recompile only when the relevant .c file has been changed. the format for this make command is as follows:
+quadSolver.o: quadSolver.c
+	$(cc) $(CFLAGS) -lm -c quadSolver.c -o quadSolver.o
+	
+	where "quadSolver" can be changed depending on the name of the file
+
+2. Create a command to to generate the test *.o file
+	each new .c file should have it's own *Test.c file the test.c file should adequately test valid paramiters, boundary conditions, and illegal parameters (see testing docs). The format of the make command for this file is as follows:
+answerCheckerTest.o: tests/answerCheckerTest.c tests/answerCheckerTest.h
+	$(cc) $(CFLAGS) -c tests/answerCheckerTest.c -o answerCheckerTest.o -lcunit
+
+where "answerChecker" is changed to match the name of the file being tested.
+
+3. Create a command to compile and run the test:
+	the format of this make command should be as follows:
+quadSolverTest: quadSolverTest.o quadSolver.o answerChecker.o
+	$(cc) $(CFLAGS) quadSolver.o answerChecker.o quadSolverTest.o -o quadSolverTest -lcunit -lm
+
+where "quadSolver" can be changed depending on the name of the file, note that the .o files for the files this file depend on are included on both lines.
+Now the test can be run with the command ./quadSolver
+
+4. adding the test file to automation:
+	to add the test for your new file to automation, append the following lines to the make command "runAllUnitTests":
+	./answerCheckerTest
+	mv CUnitAutomated-Results.xml CUnitAutomated-Results-answerChecker.xml
+
+again, "answerChecker" should be changed to match your new file's name.

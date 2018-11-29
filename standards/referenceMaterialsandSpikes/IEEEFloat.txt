@@ -1,0 +1,8 @@
+Sources:
+https://steve.hollasch.net/cgindex/coding/ieeefloat.html
+https://math.stackexchange.com/questions/311382/solving-a-quadratic-equation-with-precision-when-using-floating-point-variables
+
+Findings:
+32 bit IEEE floating point values can be used for up to 7 decimal places of precision. This is acceptable for our needs, however, the accuracy can be significantly weakened when 2 floating point values are multiplied. This issue can be mitigated in 2 ways: first by using doubles for arithmetic operations, and second by dividing by the reciprocal of a number in place of multiplication. Our tests indicate that the first method is sufficient for providing accurate answers in the quad solver program, but we may need to implement the second in the future if precision issues arise. 
+
+Why doubles work better: doubles store decimal values using twice the amount of memory (generally 64 bits) as single precision floats. This gives them more than twice the number of units of precision that floats would give, so even when multiplying floating point values, accuracy will not be deiminished beyond the required 7 places of precision.
