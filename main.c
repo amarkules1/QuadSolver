@@ -24,22 +24,37 @@ float b=0;
 float c=0;  
 
 //doubles to pass to quadSolver
-double x1;
-double x2; 
+double x1=0;
+double x2=0; 
 
-quadConstants * line = readFromConsole();
+quadConstants * line = readFromConsole(); 
 
+printf("\n");
+
+//check if line is null before assigning 
 if(line != NULL){
 
 a = validateInput(line->A);
 b = validateInput(line->B);
-c = validateInput(line->C);
+c = validateInput(line->C); 
 
-}
+ printf("\n");
+
+ printWarnings(a,b,c,x1,x2);
+ 
+ printf("\n");
 
  quadSolver(a,b,c,&x1,&x2);  
 
- printWarnings(a,b,c,x1,x2);
+}
+else{
+
+	printf("Line is null.\n");
+}
+
+
+
+ 
 
 
 	return(0);

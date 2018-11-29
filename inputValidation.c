@@ -3,14 +3,7 @@
 #include <stdlib.h>
 #include "inputValidation.h"
 
-/**This method could be implemented after Grant's initial input validation
- * things to check:
- * check if float
- * check precision
- * 
- * 
- * 
- * **/
+
 float validateInput(char * input){
 
 float number; 
